@@ -89,6 +89,7 @@ local plugins = {
         mode = "document_diagnostics",
         severity = vim.diagnostic.severity.ERROR,
         auto_preview = false,
+        multiline = true,
       },
       cmd = { "Trouble", "TroubleToggle" },
     },

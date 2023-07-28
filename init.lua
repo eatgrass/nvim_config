@@ -8,7 +8,8 @@ vim.opt.foldlevel = 20
 vim.opt.encoding = "UTF-8"
 vim.opt.fixendofline = false
 
-vim.api.nvim_exec("language en_US.UTF-8", true)
+vim.api.nvim_exec2("language en_US.UTF-8", { output = true })
+-- vim.cmd("setlocal spell spelllang=en_us")
 
 -- vim.diagnostic.config {
 --   virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
@@ -52,9 +53,11 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     end
 
     -- open the tree but don't focus it
-    require("nvim-tree.api").tree.toggle({ focus = false })
+    require("nvim-tree.api").tree.toggle { focus = false }
   end,
 })
+
+
 
 -- vim.api.nvim_create_autocmd({
 --   "CursorMoved",
@@ -75,7 +78,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "DiffviewFileHistory",
   },
   callback = function()
-    vim.cmd("nnoremap <silent> <buffer> q :DiffviewClose<CR>")
+    vim.cmd "nnoremap <silent> <buffer> q :DiffviewClose<CR>"
   end,
 })
 
@@ -95,34 +98,42 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "vim-plug",
   },
   callback = function()
-    vim.cmd([[
+    vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
       nnoremap <silent> <buffer> <esc> :close<CR>
       set nobuflisted
-    ]])
+    ]]
   end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "markdown" },
   callback = function()
-    vim.cmd([[
+    vim.cmd [[
       set conceallevel=2
       set wrap
       set foldlevel=99
-    ]])
+    ]]
   end,
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 2000 })
+    vim.highlight.on_yank { higroup = "Visual", timeout = 2000 }
   end,
 })
 
 vim.api.nvim_create_user_command("CurrentHighlight", function()
   local result = vim.treesitter.get_captures_at_cursor(0)
   print(vim.inspect(result))
+end, {})
+
+vim.api.nvim_create_user_command("ReloadTheme", function()
+  require('base46').load_all_highlights()
+end, {})
+
+vim.api.nvim_create_user_command("PlainTreesiter", function()
+  require("custom.plain_colors").setup()
 end, {})
 
 vim.api.nvim_create_user_command("PickWindow", function()
@@ -165,7 +176,7 @@ vim.api.nvim_create_autocmd("User", {
 -- enhance ui
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    local colors = require("base46").get_theme_tb("base_30")
+    local colors = require("base46").get_theme_tb "base_30"
     -- local theme = require("base46").get_theme_tb "base_16"
     -- local generate_color = require("base46.colors").change_hex_lightness
 
@@ -185,7 +196,7 @@ local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
   if contents ~= nil then
     for i, content in pairs(contents) do
-      contents[i] = content:gsub('%]%(.-%)', ']()')
+      contents[i] = content:gsub("%]%(.-%)", "]()")
     end
   end
   local bufnr, winid = orig_util_open_floating_preview(contents, syntax, opts)

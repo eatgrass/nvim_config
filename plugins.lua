@@ -1,17 +1,31 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
+
+local reload_colorized = function()
+  local base_30 = require("base46").get_theme_tb "base_30"
+  local base_16 = require("base46").get_theme_tb "base_16"
+
+  require("colorizer").setup {
+    user_default_options = {
+      custom = vim.tbl_extend("keep", base_30, base_16),
+      virtualtext = "",
+      mode = "inline",
+    },
+  }
+end
+
+vim.api.nvim_create_user_command("ReloadColors", reload_colorized, {})
 
 ---@type NvPluginSpec[]
 local plugins = {
-
   -- Override plugin definition options
   {
     "eatgrass/maven.nvim",
     cmd = { "Maven", "MavenExec" },
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
-      require("maven").setup({
+      require("maven").setup {
         executable = "/Users/huangjing/.m2/wrapper/dists/apache-maven-3.8.3-bin/5a6n1u8or3307vo2u2jgmkhm0t/apache-maven-3.8.3/bin/mvn",
-      })
+      }
     end,
   },
   {
@@ -26,7 +40,7 @@ local plugins = {
     "chentoast/marks.nvim",
     keys = { { mode = "n", "m" } },
     config = function()
-      require("marks").setup({
+      require("marks").setup {
         default_mappings = false,
         -- which builtin marks to show. default {}
         builtin_marks = { ".", "<", ">", "^" },
@@ -58,23 +72,23 @@ local plugins = {
           annotate = false,
         },
         mappings = {},
-      })
+      }
     end,
   },
   {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)
-      local cmp = require("cmp")
-      opts.mapping["<Right>"] = cmp.mapping({
-        i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+      local cmp = require "cmp"
+      opts.mapping["<Right>"] = cmp.mapping {
+        i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
         c = function(fallback)
           if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
           else
             fallback()
           end
         end,
-      })
+      }
 
       cmp.setup(opts)
     end,
@@ -89,7 +103,7 @@ local plugins = {
         mode = "document_diagnostics",
         severity = vim.diagnostic.severity.ERROR,
         auto_preview = false,
-        multiline = true,
+        include_declaration = {},
       },
       cmd = { "Trouble", "TroubleToggle" },
     },
@@ -98,7 +112,7 @@ local plugins = {
     "numToStr/Comment.nvim",
     keys = { { mode = "n", "gcc", "gbc" }, { mode = "v", "gc", "gbc" } },
     init = function()
-      require("core.utils").load_mappings("comment")
+      require("core.utils").load_mappings "comment"
     end,
     config = function()
       require("Comment").setup()
@@ -111,13 +125,13 @@ local plugins = {
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require("custom.configs.null-ls")
+          require "custom.configs.null-ls"
         end,
       },
     },
     config = function()
-      require("plugins.configs.lspconfig")
-      require("custom.configs.lspconfig")
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
 
@@ -166,11 +180,11 @@ local plugins = {
     dependencies = { "nvim-lspconfig" },
     event = "LspAttach",
     config = function()
-      require("fidget").setup({
+      require("fidget").setup {
         window = {
           blend = 0,
         },
-      })
+      }
     end,
   },
   {
@@ -189,7 +203,7 @@ local plugins = {
       {
         "rcarriga/nvim-dap-ui",
         opts = function()
-          return require("custom.configs.dapui")
+          return require "custom.configs.dapui"
         end,
         config = function(_, opts)
           require("dapui").setup(opts)
@@ -197,14 +211,14 @@ local plugins = {
       },
     },
     config = function()
-      require("custom.configs.dap")
+      require "custom.configs.dap"
     end,
   },
   {
     "simrat39/symbols-outline.nvim",
     lazy = false,
     opts = function()
-      return require("custom.configs.outline")
+      return require "custom.configs.outline"
     end,
     config = function(_, opts)
       require("symbols-outline").setup(opts)
@@ -214,7 +228,7 @@ local plugins = {
     "SmiteshP/nvim-navic",
     lazy = false,
     opts = function()
-      return require("custom.configs.navic")
+      return require "custom.configs.navic"
     end,
     config = function(_, opts)
       require("nvim-navic").setup(opts)
@@ -223,7 +237,7 @@ local plugins = {
   {
     "RRethy/vim-illuminate",
     opts = function()
-      return require("custom.configs.illuminate")
+      return require "custom.configs.illuminate"
     end,
     config = function(_, opts)
       require("illuminate").configure(opts)
@@ -248,7 +262,7 @@ local plugins = {
     "simrat39/rust-tools.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
     opts = function()
-      return require("custom.configs.rust")
+      return require "custom.configs.rust"
     end,
     config = function(_, opts)
       require("rust-tools").setup(opts)
@@ -260,9 +274,9 @@ local plugins = {
     event = "VeryLazy",
     dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" },
     config = function()
-      require("neogit").setup({
+      require("neogit").setup {
         kind = "split_above",
-      })
+      }
     end,
   },
   {
@@ -270,10 +284,10 @@ local plugins = {
     dependencies = "nvim-lua/plenary.nvim",
     event = "VeryLazy",
     config = function()
-      require("diffview").setup({
+      require("diffview").setup {
         enhanced_diff_hl = true,
-      })
-      local colors = require("base46").get_theme_tb("base_30")
+      }
+      local colors = require("base46").get_theme_tb "base_30"
       local generate_color = require("base46.colors").change_hex_lightness
       vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#4f302d" })
       vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = "#2b4651" })
@@ -305,13 +319,30 @@ local plugins = {
   {
     "NvChad/nvim-colorizer.lua",
     enabled = false,
+    dependencies = "NvChad/base46",
+    config = reload_colorized,
+  },
+
+  {
+    "eatgrass/colorizer",
+    dev = true,
+    init = function()
+      require("core.utils").lazy_load "colorizer"
+    end,
+    config = function(_, opts)
+      reload_colorized()
+      -- execute colorizer as soon as possible
+      vim.defer_fn(function()
+        require("colorizer").attach_to_buffer(0)
+      end, 0)
+    end,
   },
   {
     "hrsh7th/cmp-cmdline",
     dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
     event = "VeryLazy",
     config = function()
-      local cmp = require("cmp")
+      local cmp = require "cmp"
       cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {

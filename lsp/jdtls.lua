@@ -29,14 +29,6 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 
-local remap = function(bufnr, mode, rhs, lhs, bufopts, desc)
-  if bufopts == nil then
-    bufopts = {}
-  end
-  bufopts.desc = desc
-  vim.api.nvim_buf.set_keymap(bufnr, mode, rhs, lhs, bufopts)
-end
-
 local on_attach = function(client, bufnr)
 
   local handler = require "custom.lsp.handler"
@@ -58,18 +50,6 @@ local on_attach = function(client, bufnr)
     buffer = bufnr,
   })
 
-
-  -- vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
-  -- vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
-  -- vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
-  -- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
-  -- vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
-  -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
-  -- remap(bufnr, "n", "<A-o>", "<cmd>lua require'jdtls'.organize_imports()<cr>", "Organize Import")
-  -- remap(bufnr, "n", "<Leader>jtc", "<cmd>lua require'jdtls'.test_class()<CR>", "Test Class")
-  -- remap(bufnr, "n", "<Leader>jtm", "<cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method")
-  -- require("core.utils").load_mappings("jdtls")
-  -- print("jdtls mapping loaded")
 end
 
 local config = {

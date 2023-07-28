@@ -1,13 +1,25 @@
 ---@type MappingsTable
 local M = {}
 
-local toggle_mark = function()
-  require("marks").toggle()
+local scrolloff = false
+local toggle_scrolloff = function()
+  if scrolloff then
+    vim.cmd("set so=0")
+    print("cursor center off")
+  else
+    vim.cmd("set so=999")
+    print("cursor center on")
+  end
+  scrolloff = not scrolloff
 end
+
+vim.api.nvim_create_user_command("ToggleScrollOff", toggle_scrolloff, {})
 
 M.general = {
   n = {
-    ["mm"] = { "<Plug>(Marks-toggle-bookmark0)" },
+    -- ["j"] = {"jzz", opts= {noremap=true}},
+    -- ["k"] = {"kzz", opts= {noremap=true}},
+    ["<Leader>fe"] = { "<Leader>fb<C-t>", "", opts = { noremap = true } },
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "hop in line", opts = { noremap = true } },
     ["q"] = { "<cmd>HopChar1<cr>", "hop in buffer", opts = { noremap = true } },
@@ -20,10 +32,10 @@ M.general = {
     ["<Down>"] = { "<cmd>resize -2<cr>", "Window Height-", opts = { noremap = true } },
     ["<Left>"] = { "<cmd>vertical resize +2<cr>", "Window Width+", opts = { noremap = true } },
     ["<Right>"] = { "<cmd>vertical resize -2<cr>", "Window Width-", opts = { noremap = true } },
-    ["<Leader>fe"] = { "<cmd>Telescope file_browser<cr>", "Browse Files", opts = { noremap = true } },
+    ["<Leader>s"] = { "<cmd>ToggleScrollOff<cr>", "Toggle Cursor Center", opts = { noremap = true } },
+    -- ["<Leader>fe"] = { "<cmd>Telescope file_browser<cr>", "Browse Files", opts = { noremap = true } },
     ["<Leader>ff"] = { "<cmd>Telescope find_files<cr>", "Files" },
     ["<Leader>fs"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find Symbols" },
-    ["<Leader>fb"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
     ["<Leader>fo"] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     ["<Leader>fg"] = {
       "<cmd>lua require('telescope.builtin').live_grep({default_text=vim.fn.expand('<cword>')})<cr>",
@@ -73,6 +85,22 @@ M.lspconfig = {
     ["gi"] = { "<cmd>Trouble lsp_implementations<cr>", "LSP implementation" },
     ["gD"] = { "<cmd>Trouble lsp_type_definitions<cr>", "LSP definition type" },
     ["gr"] = { "<cmd>Trouble lsp_references<cr>", "LSP references" },
+    ["gl"] = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic", },
+  },
+}
+
+M.telescope = {
+  plugin = true,
+
+  n = {
+    ["<leader>fb"] = {
+      "<cmd>lua require('telescope.builtin').buffers({sort_lastused = true, sort_mru = true, only_cwd = true, ignore_current_buffer = true})<CR>",
+      "Find buffers",
+    },
+    ["<leader>fw"] = {
+      "<cmd>lua require('telescope.builtin').live_grep({grep_open_files = true})<CR>",
+      "Live grep opened files",
+    },
   },
 }
 -- more keybinds!
@@ -82,6 +110,7 @@ M.disabled = {
   n = {
     ["<C-n>"] = "",
     ["v"] = "",
+    ['<leader>f'] = ""
   },
 }
 

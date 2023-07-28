@@ -4,13 +4,13 @@ local options = {
   show_guides = true,
   auto_preview = false,
   show_symbol_details = true,
-  position = 'right',
+  position = "right",
   relative_width = true,
   width = 25,
   auto_close = false,
   show_numbers = false,
   show_relative_numbers = false,
-  preview_bg_highlight = 'Pmenu',
+  preview_bg_highlight = "Pmenu",
   keymaps = { -- These keymaps can be a string or a table for multiple keys
     close = { "<Esc>", "q" },
     goto_location = "<Cr>",
@@ -23,7 +23,7 @@ local options = {
   lsp_blacklist = {},
   symbol_blacklist = {},
   symbols = {
-    File = { icon = "", hl = "text.url" },
+    File = { icon = "", hl = "text.uri" },
     Module = { icon = "", hl = "@namespace" },
     Namespace = { icon = "", hl = "@namespace" },
     Package = { icon = "", hl = "@namespace" },
@@ -48,8 +48,8 @@ local options = {
     Struct = { icon = "", hl = "@type" },
     Event = { icon = "", hl = "@type" },
     Operator = { icon = "", hl = "@operator" },
-    TypeParameter = { icon = "", hl = "@parameter" }
-  }
+    TypeParameter = { icon = "", hl = "@parameter" },
+  },
 }
 
 return options

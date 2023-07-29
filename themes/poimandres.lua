@@ -1,6 +1,8 @@
 -- https://github.com/olivercederborg/poimandres.nvim
 local M = {}
 
+local util = require "base46.colors"
+
 ---------- util functions ----------------------
 
 local function byte(value, offset)
@@ -166,7 +168,11 @@ M.polish_hl = {
   DiffAdd = { bg = blend(M.base_30["g_git_add"], M.base_30["g_background"], 0.5) },
   DiffChange = { bg = blend(M.base_30["g_git_change"], M.base_30["g_background"], 0.5) },
   DiffDelete = { bg = blend(M.base_30["g_git_delete"], M.base_30["g_background"], 0.5) },
-  DiffText = { bg = blend(M.base_30["g_git_change"], M.base_30["g_background"], 0.3), bold = true, fg = {M.base_30["o_bluegray1"], 8} },
+  DiffText = {
+    bg = blend(M.base_30["g_git_change"], M.base_30["g_background"], 0.3),
+    bold = true,
+    fg = util.change_hex_lightness(M.base_30["o_bluegray1"], 8),
+  },
   -- DiffText = { bold = true, bg = { "g_git_change", 8 }, fg = "o_bluegray3" },
 }
 

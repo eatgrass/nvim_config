@@ -3,10 +3,11 @@ local overrides = require "custom.configs.overrides"
 local reload_colorized = function()
   local base_30 = require("base46").get_theme_tb "base_30"
   local base_16 = require("base46").get_theme_tb "base_16"
+  local hl = require("custom.hl_utils")
 
   require("colorizer").setup {
     user_default_options = {
-      custom = vim.tbl_extend("keep", base_30, base_16),
+      custom = vim.tbl_extend("keep", base_30, base_16, hl.colors, hl.groups),
       virtualtext = "",
       mode = "inline",
     },
@@ -289,7 +290,6 @@ local plugins = {
       }
       -- local colors = require("base46").get_theme_tb "base_30"
       -- local generate_color = require("base46.colors").change_hex_lightness
-      -- vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#4f302d" })
       -- vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = "#2b4651" })
       -- vim.api.nvim_set_hl(0, "DiffviewDiffChange", { bg = "#1a3a56" })
       -- vim.api.nvim_set_hl(0, "DiffviewDiffText", { bg = colors.light_grey })

@@ -57,7 +57,8 @@ local origin = {
   background1 = "#303340",
   background2 = "#1B1E28",
   background3 = "#171922",
-  text = "#E4F0FB",
+  text2 = "#E4F0FB",
+  text = "#E5E5E5",
   white = "#FFFFFF",
 }
 
@@ -110,9 +111,10 @@ M.base_30 = {
   o_background1 = "#303340",
   o_background2 = "#1B1E28",
   o_background3 = "#171922",
-  o_text = "#E4F0FB",
+  o_text = "#E5E5E5",
+  o_text2 = "#E4F0FB",
   o_white = "#FFFFFF",
-  o_none = "NONE",
+  -- o_none = "NONE",
 
   g_background = origin["background2"],
   g_panel = origin["background3"],
@@ -164,7 +166,8 @@ M.polish_hl = {
   DiffAdd = { bg = blend(M.base_30["g_git_add"], M.base_30["g_background"], 0.5) },
   DiffChange = { bg = blend(M.base_30["g_git_change"], M.base_30["g_background"], 0.5) },
   DiffDelete = { bg = blend(M.base_30["g_git_delete"], M.base_30["g_background"], 0.5) },
-  DiffText = { bg = blend(M.base_30["g_git_text"], M.base_30["g_background"], 0.5) },
+  DiffText = { bg = blend(M.base_30["g_git_change"], M.base_30["g_background"], 0.3), bold = true, fg = {M.base_30["o_bluegray1"], 8} },
+  -- DiffText = { bold = true, bg = { "g_git_change", 8 }, fg = "o_bluegray3" },
 }
 
 M.type = "dark"

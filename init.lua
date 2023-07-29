@@ -2,7 +2,7 @@
 vim.g.mapleader = "\\"
 vim.opt.cursorline = true
 vim.opt.rnu = true
-vim.opt.foldmethod = "manual" -- expr or manual
+vim.opt.foldmethod = "expr" -- expr or manual
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 vim.opt.encoding = "UTF-8"
@@ -39,6 +39,23 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+-- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+--   callback = function(event)
+--     local modes = {} -- [1] old mode, [2] new mode
+--     for str in string.gmatch(event.match, "([^:]+)") do
+--       table.insert(modes, str)
+--     end
+--
+--     if modes[2] == "v" or modes[2] == "V" then
+--       vim.opt.foldexpr = nil
+--       vim.opt.foldmethod = "manual"
+--     else
+--       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--       vim.opt.foldmethod = "expr"
+--     end
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function(data)
     -- buffer is a real file on the disk
@@ -56,8 +73,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     require("nvim-tree.api").tree.toggle { focus = false }
   end,
 })
-
-
 
 -- vim.api.nvim_create_autocmd({
 --   "CursorMoved",
@@ -100,8 +115,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
-      nnoremap <silent> <buffer> <esc> :close<CR>
-      set nobuflisted
+      nnoremap <silent> <buffer>get_c
     ]]
   end,
 })
@@ -129,7 +143,7 @@ vim.api.nvim_create_user_command("CurrentHighlight", function()
 end, {})
 
 vim.api.nvim_create_user_command("ReloadTheme", function()
-  require('base46').load_all_highlights()
+  require("base46").load_all_highlights()
 end, {})
 
 vim.api.nvim_create_user_command("PlainTreesiter", function()

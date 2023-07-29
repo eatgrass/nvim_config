@@ -287,12 +287,12 @@ local plugins = {
       require("diffview").setup {
         enhanced_diff_hl = true,
       }
-      local colors = require("base46").get_theme_tb "base_30"
-      local generate_color = require("base46.colors").change_hex_lightness
-      vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#4f302d" })
-      vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = "#2b4651" })
-      vim.api.nvim_set_hl(0, "DiffviewDiffChange", { bg = "#1a3a56" })
-      vim.api.nvim_set_hl(0, "DiffviewDiffText", { bg = colors.light_grey })
+      -- local colors = require("base46").get_theme_tb "base_30"
+      -- local generate_color = require("base46.colors").change_hex_lightness
+      -- vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#4f302d" })
+      -- vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = "#2b4651" })
+      -- vim.api.nvim_set_hl(0, "DiffviewDiffChange", { bg = "#1a3a56" })
+      -- vim.api.nvim_set_hl(0, "DiffviewDiffText", { bg = colors.light_grey })
     end,
   },
   {

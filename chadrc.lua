@@ -4,7 +4,6 @@ local M = {}
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 
--- TODO ok
 local theme = "poimandres"
 
 M.ui = {

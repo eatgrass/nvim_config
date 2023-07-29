@@ -57,6 +57,8 @@ M.general = {
     ["<Leader>ds"] = { "<cmd>SymbolsOutline<cr>", "Toggle Outline" },
     ["<Leader>gs"] = { "<cmd>lua require('neogit').open()<cr>", "Git" },
     ["<Leader>gh"] = { "<cmd>DiffviewOpen<cr>", "Git Diff", opts = { silent = true } },
+    ["<Leader>gf"] = { "<cmd>DiffviewFileHistory %<cr>", "Git File History", opts = { silent = true } },
+    ["<Leader>gl"] = { "<cmd>DiffviewFileHistory<cr>", "Git Log", opts = { silent = true } },
     ["<Leader>djt"] = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Java Method" },
     ["<Leader>djj"] = { "<cmd>JdtUpdateConfig<cr>", "Jdtls Update Config" },
     ["<Leader>dm"] = { "<cmd>Maven<cr>", "Maven" },
@@ -110,7 +112,8 @@ M.disabled = {
   n = {
     ["<C-n>"] = "",
     ["v"] = "",
-    ['<leader>f'] = ""
+    ['<leader>f'] = "",
+    ['<leader>th'] = ''
   },
 }
 

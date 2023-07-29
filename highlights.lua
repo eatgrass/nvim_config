@@ -11,6 +11,8 @@ local function lighten(type, color, percentage)
   end
 end
 
+local nvim_tree_panel_bg = lighten(groups, "background", -1)
+
 local theme = {
   ColorColumn = { bg = colors["bluegray1"] },
   Conceal = { bg = "NONE" },
@@ -230,12 +232,15 @@ local theme = {
   NvimTreeGitRenamed = { fg = groups["git_rename"] },
   NvimTreeGitStaged = { fg = groups["git_stage"] },
   NvimTreeImageFile = { fg = colors["text"] },
-  NvimTreeNormal = { fg = colors["text"] },
   NvimTreeOpenedFile = { fg = colors["text"], bg = colors["background1"] },
   NvimTreeOpenedFolderName = { link = "NvimTreeFolderName" },
   NvimTreeRootFolder = { fg = colors["teal1"] },
   NvimTreeSpecialFile = { link = "NvimTreeNormal" },
   NvimTreeWindowPicker = { fg = groups["bg"], bg = colors["bluegray1"] },
+
+  NvimTreeNormal = {  bg = nvim_tree_panel_bg },
+  NvimTreeNormalNC = { bg = nvim_tree_panel_bg },
+  NvimTreeWinSeparator = { fg ="red" , bg = nvim_tree_panel_bg },
 
   WhichKey = { fg = colors["text"] },
   WhichKeyGroup = { fg = colors["blue3"] },
@@ -246,7 +251,7 @@ local theme = {
 
   IndentBlanklineChar = { fg = colors["background1"] },
   IndentBlanklineContextChar = { fg = colors["bluegray2"], nocombine = true },
-  IndentBlanklineContextStart = { sp = colors["bluegray2"], bg = "IlluminatedWordText", underline = true },
+  IndentBlanklineContextStart = { sp = colors["bluegray2"], bg = "IlluminatedWordText", underdotted = true },
   IndentBlanklineSpaceChar = { link = "Whitespace" },
   IndentBlanklineSpaceCharBlankline = { link = "Whitespace" },
 
@@ -297,6 +302,7 @@ local theme = {
   NotifyERRORBorder = { fg = colors["pink3"] },
   NotifyERRORTitle = { link = "NotifyERRORBorder" },
   NotifyERRORIcon = { link = "NotifyERRORBorder" },
+
 }
 
 local function generate()

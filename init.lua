@@ -7,15 +7,26 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 vim.opt.encoding = "UTF-8"
 vim.opt.fixendofline = false
+vim.opt.fillchars = {
+  vert = " ", -- "│",
+  fold = " ",
+  eob = " ", -- suppress ~ at EndOfBuffer
+  diff = "", -- alternatives = ⣿ ░ ─
+  msgsep = "‾",
+  foldopen = "▾",
+  foldsep = "│",
+  foldclose = "▸",
+  vertright = " ",
+  vertleft = " ",
+  verthoriz = "─",
+  horizup = "─",
+}
+
+vim.api.nvim_exec2("!stty -ixon", {output = true})
 
 vim.api.nvim_exec2("language en_US.UTF-8", { output = true })
 -- vim.cmd("setlocal spell spelllang=en_us")
 
--- vim.diagnostic.config {
---   virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
---   signs = { severity = { min = vim.diagnostic.severity.ERROR } },
---   underline = { severity = { min = vim.diagnostic.severity.ERROR } },
--- }
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
 --   pattern = "*",
@@ -38,23 +49,6 @@ vim.api.nvim_create_autocmd("User", {
     require("neogit").close()
   end,
 })
-
--- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
---   callback = function(event)
---     local modes = {} -- [1] old mode, [2] new mode
---     for str in string.gmatch(event.match, "([^:]+)") do
---       table.insert(modes, str)
---     end
---
---     if modes[2] == "v" or modes[2] == "V" then
---       vim.opt.foldexpr = nil
---       vim.opt.foldmethod = "manual"
---     else
---       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
---       vim.opt.foldmethod = "expr"
---     end
---   end,
--- })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function(data)
@@ -115,7 +109,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
-      nnoremap <silent> <buffer>get_c
+      set nobuflisted
     ]]
   end,
 })

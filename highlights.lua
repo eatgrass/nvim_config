@@ -11,7 +11,7 @@ local function lighten(type, color, percentage)
   end
 end
 
-local nvim_tree_panel_bg = lighten(groups, "background", -1)
+local nvim_tree_panel_bg = lighten(groups, "background", 0)
 
 local theme = {
   ColorColumn = { bg = colors["bluegray1"] },
@@ -238,9 +238,9 @@ local theme = {
   NvimTreeSpecialFile = { link = "NvimTreeNormal" },
   NvimTreeWindowPicker = { fg = groups["bg"], bg = colors["bluegray1"] },
 
-  NvimTreeNormal = {  bg = nvim_tree_panel_bg },
-  NvimTreeNormalNC = { bg = nvim_tree_panel_bg },
-  NvimTreeWinSeparator = { fg ="red" , bg = nvim_tree_panel_bg },
+  NvimTreeNormal = { fg=colors["text"],  bg = nvim_tree_panel_bg },
+  NvimTreeNormalNC = {fg=colors["text"], bg = nvim_tree_panel_bg },
+  NvimTreeWinSeparator = {fg="line",  bg = groups["background"]},
 
   WhichKey = { fg = colors["text"] },
   WhichKeyGroup = { fg = colors["blue3"] },

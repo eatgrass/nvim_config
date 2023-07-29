@@ -35,12 +35,12 @@ M.treesitter = {
 
 M.gitsigns = {
   signs = {
-    add = { hl = "GitSignsAdd", text = "▎"},
-    change = { hl = "GitSignsChange", text = "▎"},
-    delete = { hl = "GitSignsDelete", text = "▎"},
-    topdelete = { hl = "GitSignsTopdelete", text = "▎" },
+    add = { hl = "GitSignsAdd",                   text = "▎"},
+    change = { hl = "GitSignsChange",             text = "▎"},
+    delete = { hl = "GitSignsDelete",             text = "▎"},
+    topdelete = { hl = "GitSignsTopdelete",       text = "▎" },
     changedelete = { hl = "GitSignsChangedelete", text = "▎" },
-    untracked = { hl = "GitSignsUntracked", text = "▎" },
+    untracked = { hl = "GitSignsUntracked",       text = "▎" },
   },
 }
 

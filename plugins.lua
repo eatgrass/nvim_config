@@ -348,7 +348,7 @@ local plugins = {
 
   {
     "eatgrass/colorizer",
-    dev = true,
+    enabled = false,
     init = function()
       require("core.utils").lazy_load "colorizer"
     end,

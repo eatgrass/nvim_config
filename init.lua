@@ -7,21 +7,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 vim.opt.encoding = "UTF-8"
 vim.opt.fixendofline = false
--- vim.opt.fillchars = {
---   vert = " ", -- "│",
---   fold = " ",
---   eob = " ", -- suppress ~ at EndOfBuffer
---   diff = "", -- alternatives = ⣿ ░ ─
---   msgsep = "‾",
---   foldopen = "▾",
---   foldsep = "│",
---   foldclose = "▸",
---   vertright = " ",
---   vertleft = " ",
---   verthoriz = "─",
---   horizup = "─",
--- }
---
+
 vim.opt.fillchars = vim.opt.fillchars
   + {
     fold = "┈",
@@ -31,9 +17,8 @@ vim.opt.fillchars = vim.opt.fillchars
     diff = "",
   }
 
-vim.api.nvim_exec2("!stty -ixon", { output = true })
-
 vim.api.nvim_exec2("language en_US.UTF-8", { output = true })
+
 -- vim.cmd("setlocal spell spelllang=en_us")
 
 -- Auto resize panes when resizing nvim window

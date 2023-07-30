@@ -29,13 +29,17 @@ local plugins = {
       }
     end,
   },
+  -- {
+  --   "eatgrass/markup.nvim",
+  --   event = "VeryLazy",
+  --   dev = true,
+  --   config = function()
+  --     require("markup").setup()
+  --   end,
+  -- },
   {
-    "eatgrass/markup.nvim",
-    event = "VeryLazy",
-    dev = true,
-    config = function()
-      require("markup").setup()
-    end,
+    "lukas-reineke/indent-blankline.nvim",
+    opts = overrides.blankline,
   },
   {
     "chentoast/marks.nvim",

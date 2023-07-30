@@ -4,11 +4,11 @@ local M = {}
 local scrolloff = false
 local toggle_scrolloff = function()
   if scrolloff then
-    vim.cmd("set so=0")
-    print("cursor center off")
+    vim.cmd "set so=0"
+    print "cursor center off"
   else
-    vim.cmd("set so=999")
-    print("cursor center on")
+    vim.cmd "set so=999"
+    print "cursor center on"
   end
   scrolloff = not scrolloff
 end
@@ -87,7 +87,12 @@ M.lspconfig = {
     ["gi"] = { "<cmd>Trouble lsp_implementations<cr>", "LSP implementation" },
     ["gD"] = { "<cmd>Trouble lsp_type_definitions<cr>", "LSP definition type" },
     ["gr"] = { "<cmd>Trouble lsp_references<cr>", "LSP references" },
-    ["gl"] = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic", },
+    ["gl"] = {
+      function()
+        vim.diagnostic.open_float { border = "rounded" }
+      end,
+      "Floating diagnostic",
+    },
   },
 }
 
@@ -112,7 +117,7 @@ M.disabled = {
   n = {
     ["<C-n>"] = "",
     ["v"] = "",
-    ['<leader>f'] = "",
+    ["<leader>f"] = "",
     -- ['<leader>th'] = ''
   },
 }

@@ -33,6 +33,9 @@ M.treesitter = {
   },
 }
 
+M.blankline = {
+}
+
 M.gitsigns = {
   signs = {
     add = { hl = "GitSignsAdd",                   text = "▎"},

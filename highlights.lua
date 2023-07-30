@@ -14,6 +14,9 @@ local function lighten(type, color, percentage)
 end
 
 local nvim_tree_panel_bg = lighten(groups, "background", 0)
+local git_change_bg = utils.blend(groups["git_change"], groups["background"], 0.4)
+local git_delete_bg = utils.blend(groups["git_delete"], groups["background"], 0.2)
+local git_add_bg = utils.blend(groups["git_add"], groups["background"], 0.3)
 
 local hl_groups = {
   ColorColumn = { bg = colors["bluegray1"] },
@@ -21,7 +24,7 @@ local hl_groups = {
   CurSearch = { link = "IncSearch" },
   CursorColumn = { bg = colors["background1"] },
   -- CursorLine = { bg = colors["background1"] },
-  CursorLine = { ctermfg="black", bg = colors["background1"] },
+  CursorLine = { ctermfg = "white", bg = colors["background1"] }, -- ctermfg is a workaround https://github.com/neovim/neovim/issues/9800
   CursorLineNr = { fg = colors["text"] },
   DarkenedPanel = { bg = groups["panel"] },
   DarkenedStatusline = { bg = groups["panel"] },
@@ -31,7 +34,7 @@ local hl_groups = {
   FloatBorder = { fg = groups["border"] },
   FloatTitle = { fg = colors["bluegray2"] },
   FoldColumn = { link = "WinSeperator" },
-  Folded = { fg = colors["bluegray3"], bg = utils.blend(groups["background"], colors["bluegray3"], 0.8), bold=true },
+  Folded = { fg = colors["bluegray3"], bg = utils.blend(groups["background"], colors["bluegray3"], 0.8), bold = true },
   IncSearch = { fg = colors["background3"], bg = colors["blue2"], bold = true },
   LineNr = { fg = colors["bluegray3"] },
   MatchParen = { bg = colors["bluegray3"], fg = colors["background3"] },
@@ -44,7 +47,7 @@ local hl_groups = {
   NvimInternalError = { fg = colors["white"], bg = colors["pink3"] },
   Pmenu = { fg = colors["bluegray1"], bg = groups["panel"] },
   PmenuSbar = { bg = colors["bluegray2"] },
-  PmenuSel = { fg = colors["text"], bg = colors["background1"] },
+  PmenuSel = { fg = colors["text"], bg = "pmenu_bg" },
   PmenuThumb = { bg = colors["bluegray3"] },
   Question = { fg = colors["text"] },
   RedrawDebugClear = { fg = colors["white"], bg = colors["yellow"] },
@@ -181,7 +184,7 @@ local hl_groups = {
   ["@tag.delimiter"] = { link = "Tag" },
   ["@tag.attribute"] = { link = "Constant" },
   ["@text"] = { fg = colors["text"] },
-  ["@text.uri"] = { fg = colors["teal2"], underline = true },
+  ["@text.uri"] = { fg = colors["teal3"], underline = true },
   ["@text.danger"] = { link = "ErrorMsg" },
   ["@title"] = { fg = groups["h1"], bold = true },
   ["@type"] = { link = "Type" },
@@ -194,12 +197,12 @@ local hl_groups = {
   LspCodeLens = { fg = colors["bluegray1"] },
   LspCodeLensSeparator = { fg = colors["bluegray3"] },
 
-  DiffAdd = { bg = utils.blend(groups["git_add"], groups["background"], 0.3) },
-  DiffChange = { bg = utils.blend(groups["git_change"], groups["background"], 0.3) },
-  DiffDelete = { bg = utils.blend(groups["git_delete"], groups["background"], 0.3), fg = colors["bluegray2"] },
+  DiffAdd = { bg = git_add_bg },
+  DiffChange = { bg = git_change_bg },
+  DiffDelete = { bg = git_delete_bg, fg = colors["bluegray2"] },
   DiffText = {
-    bg = utils.change_hex_lightness(utils.blend(groups["git_change"], groups["background"], 0.4), 5),
-    fg = colors["bluegray1"],
+    bg = utils.blend(git_change_bg, colors["yellow"], 0.9),
+    fg = colors["yellow"],
     bold = true,
   },
   GitSignsAdd = { fg = groups["git_add"] },

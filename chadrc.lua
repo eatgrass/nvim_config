@@ -15,24 +15,25 @@ M.ui = {
   transparency = false,
   statusline = {
     theme = "vscode_colored",
-    overriden_modules = function()
+    overriden_modules = function(modules)
       local st_modules = require "nvchad_ui.statusline.vscode_colored"
-      return {
-        mode = function()
-          local m = vim.api.nvim_get_mode().mode
-          return "%#" .. st_modules.modes[m][2] .. "#▊ " .. st_modules.modes[m][1] .. " "
-        end,
-        LSP_progress = function()
+
+      modules[1] = (function()
+        local m = vim.api.nvim_get_mode().mode
+        return "%#" .. st_modules.modes[m][2] .. "#▊ " .. st_modules.modes[m][1] .. " "
+      end)()
+
+      modules[3] = (function()
+        if not vim.g.gitsigns_head then
           return ""
-        end,
-        git = function()
-          if not vim.g.gitsigns_head then
-            return ""
-          end
-          -- 
-          return "%#St_LspHints#  " .. vim.g.gitsigns_head .. "  "
-        end,
-      }
+        end
+        -- 
+        return "%#St_LspHints#  " .. vim.g.gitsigns_head .. "  "
+      end)()
+
+      modules[6] = ""
+
+      modules[9] = vim.o.columns > 140 and "%#StText#  %l, %c  " or ""
     end,
   },
   tabufline = {

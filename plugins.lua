@@ -100,6 +100,9 @@ local plugins = {
             fallback()
           end
         end, { "i", "s" }),
+        ["<Right>"] = {
+          c = cmp.mapping.confirm { select = false },
+        },
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()

@@ -113,7 +113,7 @@ M.disabled = {
     ["<C-n>"] = "",
     ["v"] = "",
     ['<leader>f'] = "",
-    ['<leader>th'] = ''
+    -- ['<leader>th'] = ''
   },
 }
 

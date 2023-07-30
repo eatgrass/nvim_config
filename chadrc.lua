@@ -2,9 +2,10 @@
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
 
 local theme = "poimandres"
+
+local highlights = require("custom.highlights").setup(theme)
 
 M.ui = {
   theme = theme,

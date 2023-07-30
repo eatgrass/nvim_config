@@ -1,3 +1,5 @@
+local M = {}
+
 local utils = require "custom.hl_utils"
 local colors = utils.colors
 local groups = utils.groups
@@ -13,12 +15,13 @@ end
 
 local nvim_tree_panel_bg = lighten(groups, "background", 0)
 
-local theme = {
+local hl_groups = {
   ColorColumn = { bg = colors["bluegray1"] },
   Conceal = { bg = "NONE" },
   CurSearch = { link = "IncSearch" },
   CursorColumn = { bg = colors["background1"] },
-  CursorLine = { bg = colors["background1"] },
+  -- CursorLine = { bg = colors["background1"] },
+  CursorLine = { ctermfg="black", bg = colors["background1"] },
   CursorLineNr = { fg = colors["text"] },
   DarkenedPanel = { bg = groups["panel"] },
   DarkenedStatusline = { bg = groups["panel"] },
@@ -27,8 +30,8 @@ local theme = {
   ErrorMsg = { fg = colors["pink3"], bold = true },
   FloatBorder = { fg = groups["border"] },
   FloatTitle = { fg = colors["bluegray2"] },
-  FoldColumn = { fg = colors["bluegray2"] },
-  Folded = { fg = colors["text"], bg = groups["panel"] },
+  FoldColumn = { link = "WinSeperator" },
+  Folded = { fg = colors["bluegray3"], bg = utils.blend(groups["background"], colors["bluegray3"], 0.8), bold=true },
   IncSearch = { fg = colors["background3"], bg = colors["blue2"], bold = true },
   LineNr = { fg = colors["bluegray3"] },
   MatchParen = { bg = colors["bluegray3"], fg = colors["background3"] },
@@ -191,11 +194,11 @@ local theme = {
   LspCodeLens = { fg = colors["bluegray1"] },
   LspCodeLensSeparator = { fg = colors["bluegray3"] },
 
-  DiffAdd = { bg = utils.blend(groups["git_add"], groups["background"], 0.5) },
-  DiffChange = { bg = utils.blend(groups["git_change"], groups["background"], 0.5) },
-  DiffDelete = { bg = utils.blend(groups["git_delete"], groups["background"], 0.5), fg = colors["bluegray2"] },
+  DiffAdd = { bg = utils.blend(groups["git_add"], groups["background"], 0.3) },
+  DiffChange = { bg = utils.blend(groups["git_change"], groups["background"], 0.3) },
+  DiffDelete = { bg = utils.blend(groups["git_delete"], groups["background"], 0.3), fg = colors["bluegray2"] },
   DiffText = {
-    bg = utils.change_hex_lightness(utils.blend(groups["git_change"], groups["background"], 0.45), 5),
+    bg = utils.change_hex_lightness(utils.blend(groups["git_change"], groups["background"], 0.4), 5),
     fg = colors["bluegray1"],
     bold = true,
   },
@@ -213,6 +216,7 @@ local theme = {
   DiffviewPrimary = { fg = colors["teal2"] },
   DiffviewFilePanelCounter = { fg = colors["teal2"] },
   DiffviewDiffAddAsDelete = { link = "DiffDelete" },
+  DiffviewDiffDeleteDim = { link = "DiffDelete" },
 
   NvimTreeCursorLine = { link = "CursorLine" },
   NvimTreeEmptyFolderName = { fg = colors["bluegray3"] },
@@ -238,9 +242,10 @@ local theme = {
   NvimTreeSpecialFile = { link = "NvimTreeNormal" },
   NvimTreeWindowPicker = { fg = groups["bg"], bg = colors["bluegray1"] },
 
-  NvimTreeNormal = { fg=colors["text"],  bg = nvim_tree_panel_bg },
-  NvimTreeNormalNC = {fg=colors["text"], bg = nvim_tree_panel_bg },
-  NvimTreeWinSeparator = {fg="line",  bg = groups["background"]},
+  NvimTreeNormal = { fg = colors["text"], bg = nvim_tree_panel_bg },
+  NvimTreeNormalNC = { fg = colors["text"], bg = nvim_tree_panel_bg },
+  NvimTreeWinSeparator = { fg = "line", bg = groups["background"] },
+  -- NvimTreeWinSeparator = {fg="line",  bg = "background"},
 
   WhichKey = { fg = colors["text"] },
   WhichKeyGroup = { fg = colors["blue3"] },
@@ -302,23 +307,24 @@ local theme = {
   NotifyERRORBorder = { fg = colors["pink3"] },
   NotifyERRORTitle = { link = "NotifyERRORBorder" },
   NotifyERRORIcon = { link = "NotifyERRORBorder" },
-
 }
 
-local function generate()
-  local M = {
+M.setup = function(theme)
+  local table = {
     override = {},
     add = {},
   }
-  for key, val in pairs(theme) do
-    if utils.predefined[key] then
-      M.override[key] = val
-    else
-      M.add[key] = val
+  if theme == "poimandres" then
+    for key, val in pairs(hl_groups) do
+      if utils.predefined[key] then
+        table.override[key] = val
+      else
+        table.add[key] = val
+      end
     end
   end
 
-  return M
+  return table
 end
 
-return generate()
+return M

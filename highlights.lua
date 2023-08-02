@@ -22,8 +22,8 @@ local hl_groups = {
   ColorColumn = { bg = colors["bluegray1"] },
   Conceal = { bg = "NONE" },
   CursorColumn = { bg = colors["background1"] },
-  -- CursorLine = { bg = colors["background1"] },
-  CursorLine = { ctermfg = "white", bg = colors["background1"] }, -- ctermfg is a workaround https://github.com/neovim/neovim/issues/9800
+  CursorLine = { bg = colors["background1"] },
+  -- CursorLine = { ctermfg = "white", bg = colors["background1"] }, -- ctermfg is a workaround https://github.com/neovim/neovim/issues/9800
   CursorLineNr = { fg = colors["text"] },
   DarkenedPanel = { bg = groups["panel"] },
   DarkenedStatusline = { bg = groups["panel"] },

@@ -19,6 +19,7 @@ M.general = {
   n = {
     -- ["j"] = {"jzz", opts= {noremap=true}},
     -- ["k"] = {"kzz", opts= {noremap=true}},
+    ["*"] = { "<cmd>keepjumps normal! mi*`i<CR>", "", opts = { noremap = true } },
     ["<Leader>fe"] = { "<Leader>fb<C-t>", "", opts = { noremap = true } },
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "hop in line", opts = { noremap = true } },

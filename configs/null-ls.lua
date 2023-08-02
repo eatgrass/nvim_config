@@ -10,7 +10,7 @@ local sources = {
 
   -- webdev stuff
   b.formatting.prettier.with({
-    filetypes = { "json", "html", "xml", "markdown", "css", "typescript", "javascript", "vue" },
+    filetypes = { "json", "scss", "html", "xml", "markdown", "css", "typescript", "javascript", "vue" },
     -- extra_filetypes = { "java" },
   }), -- so prettier works only on these filetypes
 

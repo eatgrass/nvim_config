@@ -1,4 +1,4 @@
-local lspconfig = require("plugins.configs.lspconfig")
+local lspconfig = require "plugins.configs.lspconfig"
 
 local M = {}
 
@@ -16,7 +16,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local auto_format_enabled = false
 local lsp_formatting = function(bufnr)
   local found = false
-  vim.lsp.buf.format({
+  vim.lsp.buf.format {
     filter = function(client)
       if not auto_format_enabled then
         return false
@@ -30,19 +30,18 @@ local lsp_formatting = function(bufnr)
       return found
     end,
     bufnr = bufnr,
-  })
+  }
 end
 
 M.toggleAutoFormat = function()
   auto_format_enabled = not auto_format_enabled
+  print("auto format enabled:" .. auto_format_enabled)
 end
 
 M.on_attach = function(client, bufnr)
   lspconfig.on_attach(client, bufnr)
   -- lsp_keymaps(bufnr)
   -- lsp_highlight_document(client)
-
-
 
   if client.server_capabilities.code_lens then
     local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
@@ -55,7 +54,7 @@ M.on_attach = function(client, bufnr)
     })
   end
 
-  if client.supports_method("textDocument/formatting") then
+  if client.supports_method "textDocument/formatting" then
     local opts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(
       bufnr,
@@ -65,11 +64,12 @@ M.on_attach = function(client, bufnr)
       opts
     )
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>df", "<cmd>lua vim.lsp.buf.format()<cr>", opts)
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroup,
       buffer = bufnr,
       callback = function()
+        print("formatting buffer")
         lsp_formatting(bufnr)
       end,
     })

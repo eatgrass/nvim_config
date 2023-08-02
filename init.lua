@@ -2,7 +2,7 @@
 vim.g.mapleader = "\\"
 vim.opt.cursorline = true
 vim.opt.rnu = true
-vim.opt.foldmethod = "expr" -- expr or manual
+vim.opt.foldmethod = "manual" -- expr or manual
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 vim.opt.encoding = "UTF-8"
@@ -15,6 +15,7 @@ vim.opt.fillchars = vim.opt.fillchars
     foldopen = "",
     foldsep = "│",
     diff = "",
+    lastline= " ",
   }
 
 vim.api.nvim_exec2("language en_US.UTF-8", { output = true })

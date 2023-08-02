@@ -28,7 +28,7 @@ local hl_groups = {
   DarkenedPanel = { bg = groups["panel"] },
   DarkenedStatusline = { bg = groups["panel"] },
 
-  Search = { bg = lighten(colors, "blue3", -15), bold = true, nocombine = true },
+  Search = { bg = lighten(colors, "blue3", -15), bold = true},
   IncSearch = {
     fg = colors["background3"],
     bg = colors["blue2"],
@@ -38,9 +38,10 @@ local hl_groups = {
   },
   CurSearch = { link = "IncSearch" },
   Substitute = { link = "IncSearch" },
+
   Directory = { fg = colors["blue3"], bg = "NONE" },
   ErrorMsg = { fg = colors["pink3"], bold = true },
-  FloatBorder = { fg = groups["border"] },
+  FloatBorder = { fg = colors["blue2"] },
   FloatTitle = { fg = colors["bluegray2"] },
   FoldColumn = { link = "WinSeperator" },
   Folded = { fg = colors["bluegray3"], bg = utils.blend(groups["background"], colors["bluegray3"], 0.8), bold = true },
@@ -48,7 +49,7 @@ local hl_groups = {
   MatchParen = { bg = colors["bluegray3"], fg = colors["background3"] },
   ModeMsg = { fg = colors["blue3"] },
   MoreMsg = { fg = colors["blue3"] },
-  NonText = { fg = colors["blue4"] },
+  NonText = { fg = groups["background"], bg="NONE" },
   Normal = { fg = colors["text"], bg = groups["background"] },
   NormalFloat = { fg = colors["text"], bg = groups["panel"] },
   NormalNC = { fg = colors["text"], bg = groups["background"] },
@@ -154,7 +155,7 @@ local hl_groups = {
   Type = { fg = colors["text"] },
   Special = { fg = colors["bluegray2"] },
   -- Tag = { fg = colors["text"] },
-  Tag = { link = "Keyword" },
+  Tag = { fg=colors ["bluegray1"] },
   Delimiter = { fg = colors["bluegray1"] },
   SpecialComment = { fg = colors["bluegray1"] },
   Comment = { fg = colors["bluegray3"] },
@@ -162,10 +163,10 @@ local hl_groups = {
   ["@variable"] = { link = "Variable" },
   ["@boolean"] = { link = "Boolean" },
   ["@comment"] = { link = "Comment" },
-  ["@variable.builtin"] = { fg = colors["blue2"] },
+  ["@variable.builtin"] = { link = "Keyword" },
   ["@exception"] = { link = "Keyword" },
   ["@constant"] = { fg = colors["pink2"] },
-  ["@constant.builtin"] = { fg = colors["blue2"] },
+  ["@constant.builtin"] = { link = "Keyword" },
   ["@constant.falsy"] = { fg = colors["pink3"] },
   ["@constructor"] = { fg = colors["teal1"] },
   ["@attribute"] = { link = "Keyword" },
@@ -176,7 +177,7 @@ local hl_groups = {
   ["@keyword"] = { link = "Keyword" },
   ["@keyword.return"] = { link = "Keyword" },
   ["@keyword.function"] = { link = "Keyword" },
-  ["@keyword.operator"] = { fg = colors["teal1"] },
+  ["@keyword.operator"] = { link = "Keyword" },
   ["@label"] = { fg = colors["blue3"] },
   ["@method"] = { fg = colors["teal1"] },
   ["@operator"] = { link = "Operator" },
@@ -189,7 +190,7 @@ local hl_groups = {
   ["@string.escape"] = { fg = colors["pink3"] },
   ["@tag"] = { link = "Tag" },
   ["@tag.delimiter"] = { link = "Tag" },
-  ["@tag.attribute"] = { link = "Constant" },
+  ["@tag.attribute"] = { fg = colors["blue2"] },
   ["@text"] = { fg = colors["text"] },
   ["@text.uri"] = { fg = colors["teal3"], underline = true },
   ["@text.danger"] = { link = "ErrorMsg" },
@@ -316,7 +317,10 @@ local hl_groups = {
   NotifyERRORBorder = { fg = colors["pink3"] },
   NotifyERRORTitle = { link = "NotifyERRORBorder" },
   NotifyERRORIcon = { link = "NotifyERRORBorder" },
+
+
 }
+
 
 M.setup = function(theme)
   local table = {
@@ -335,5 +339,6 @@ M.setup = function(theme)
 
   return table
 end
+
 
 return M

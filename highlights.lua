@@ -28,7 +28,7 @@ local hl_groups = {
   DarkenedPanel = { bg = groups["panel"] },
   DarkenedStatusline = { bg = groups["panel"] },
 
-  Search = { bg = lighten(colors, "blue3", -15), bold = true},
+  Search = { bg = lighten(colors, "blue3", -15), fg = "base01", bold = true },
   IncSearch = {
     fg = colors["background3"],
     bg = colors["blue2"],
@@ -38,6 +38,7 @@ local hl_groups = {
   },
   CurSearch = { link = "IncSearch" },
   Substitute = { link = "IncSearch" },
+  TroublePreview = { bold = true, fg = colors["pink3"]},
 
   Directory = { fg = colors["blue3"], bg = "NONE" },
   ErrorMsg = { fg = colors["pink3"], bold = true },
@@ -49,7 +50,7 @@ local hl_groups = {
   MatchParen = { bg = colors["bluegray3"], fg = colors["background3"] },
   ModeMsg = { fg = colors["blue3"] },
   MoreMsg = { fg = colors["blue3"] },
-  NonText = { fg = groups["background"], bg="NONE" },
+  NonText = { fg = groups["background"], bg = "NONE" },
   Normal = { fg = colors["text"], bg = groups["background"] },
   NormalFloat = { fg = colors["text"], bg = groups["panel"] },
   NormalNC = { fg = colors["text"], bg = groups["background"] },
@@ -155,7 +156,7 @@ local hl_groups = {
   Type = { fg = colors["text"] },
   Special = { fg = colors["bluegray2"] },
   -- Tag = { fg = colors["text"] },
-  Tag = { fg=colors ["bluegray1"] },
+  Tag = { fg = colors["bluegray1"] },
   Delimiter = { fg = colors["bluegray1"] },
   SpecialComment = { fg = colors["bluegray1"] },
   Comment = { fg = colors["bluegray3"] },
@@ -317,10 +318,7 @@ local hl_groups = {
   NotifyERRORBorder = { fg = colors["pink3"] },
   NotifyERRORTitle = { link = "NotifyERRORBorder" },
   NotifyERRORIcon = { link = "NotifyERRORBorder" },
-
-
 }
-
 
 M.setup = function(theme)
   local table = {
@@ -339,6 +337,5 @@ M.setup = function(theme)
 
   return table
 end
-
 
 return M

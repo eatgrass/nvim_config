@@ -4,15 +4,16 @@ local M = {}
 -- Path to overriding theme and highlights files
 
 local theme = "poimandres"
+local transparency = true
 
-local highlights = require("custom.highlights").setup(theme)
+local highlights = require("custom.highlights").setup(theme, transparency)
 
 M.ui = {
   theme = theme,
   hl_override = highlights.override,
   hl_add = highlights.add,
   lsp_semantic_tokens = false,
-  transparency = false,
+  transparency = transparency,
   statusline = {
     theme = "vscode_colored",
     overriden_modules = function(modules)

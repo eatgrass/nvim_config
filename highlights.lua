@@ -38,7 +38,7 @@ local hl_groups = {
   },
   CurSearch = { link = "IncSearch" },
   Substitute = { link = "IncSearch" },
-  TroublePreview = { bold = true, fg = colors["pink3"]},
+  TroublePreview = { bold = true, fg = colors["pink3"] },
 
   Directory = { fg = colors["blue3"], bg = "NONE" },
   ErrorMsg = { fg = colors["pink3"], bold = true },
@@ -320,13 +320,58 @@ local hl_groups = {
   NotifyERRORIcon = { link = "NotifyERRORBorder" },
 }
 
-M.setup = function(theme)
+M.transparency = {
+  CursorLine = { bg = colors["background3"] },
+  ["TblineFill"] = { bg = "NONE" },
+  ["TbLineBufOn"] = { bg = "NONE" },
+  ["TbLineBufOff"] = { bg = "NONE" },
+  ["TbLineBufOnClose"] = { bg = "NONE" },
+  ["TbLineBufOffClose"] = { bg = "NONE" },
+  ["TbLineBufOnModified"] = { bg = "NONE" },
+  ["TbLineBufOffModified"] = { bg = "NONE" },
+  ["NormalFloat"] = { bg = "NONE" },
+  ["Normal"] = { bg = "NONE" },
+  ["NormalNC"] = { bg = "NONE" },
+  ["Folded"] = { bg = "NONE" },
+  ["NvimTreeNormal"] = { bg = "NONE" },
+  ["NvimTreeNormalNC"] = { bg = "NONE" },
+  -- ["NvimTreeCursorLine"] = { bg = "NONE" },
+  ["TelescopeNormal"] = { bg = "NONE" },
+  ["TelescopePrompt"] = { bg = "NONE" },
+  ["TelescopeResults"] = { bg = "NONE" },
+  ["TelescopePromptNormal"] = { bg = "NONE" },
+  ["TelescopePromptPrefix"] = { bg = "NONE" },
+  ["Pmenu"] = { bg = "NONE" },
+  ["CmpPmenu"] = { bg = "NONE" },
+  ["NvimTreeWinSeparator"] = { fg = "one_bg2", bg = "None" },
+  ["TelescopeBorder"] = {
+    fg = colors.grey,
+    bg = "NONE",
+  },
+  -- ["TelescopeResultsTitle"] = {
+  --   fg = colors.black,
+  --   bg = colors.blue,
+  -- },
+}
+
+M.setup = function(theme, transparency)
   local table = {
     override = {},
     add = {},
   }
+
+  local g = hl_groups
+
+  if transparency then
+    for key, value in pairs(M.transparency) do
+      if g[key] then
+        g[key] = vim.tbl_deep_extend("force", g[key], value)
+      end
+    end
+  end
+
   if theme == "poimandres" then
-    for key, val in pairs(hl_groups) do
+    for key, val in pairs(g) do
       if utils.predefined[key] then
         table.override[key] = val
       else

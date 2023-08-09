@@ -133,6 +133,7 @@ local hl_groups = {
   DiagnosticVirtualTextHint = { fg = groups["hint"] },
   DiagnosticVirtualTextInfo = { fg = groups["info"] },
   DiagnosticVirtualTextWarn = { fg = groups["warn"] },
+  St_LspHints = {fg = colors["blue2"]},
 
   Constant = { fg = colors["pink2"] },
   Variable = { fg = colors["bluegray1"] },
@@ -214,6 +215,16 @@ local hl_groups = {
     fg = colors["yellow"],
     bold = true,
   },
+  NeogitDiffAdd = { link = "DiffAdd" },
+  NeogitDiffAddHighlight = { link = "DiffAdd" },
+  NeogitDiffDelete = { link = "DiffDelete" },
+  NeogitDiffDeleteHighlight = { link = "DiffDelete" },
+  NeogitHunkHeader = { link = "Folded" },
+  NeogitHunkHeaderHighlight = { bg = colors["background1"], bold = true },
+  NeogitDiffContext = { link = "Normal" },
+  NeogitDiffContextHighlight = { bg=colors["background1"] },
+  NeogitCursorLine = { link = "CursorLine" },
+
   GitSignsAdd = { fg = groups["git_add"] },
   GitSignsChange = { fg = groups["git_change"] },
   GitSignsDelete = { fg = groups["git_delete"] },
@@ -321,7 +332,7 @@ local hl_groups = {
 }
 
 M.transparency = {
-  CursorLine = { bg = colors["background3"] },
+  -- CursorLine = { bg = colors["background3"] },
   ["TblineFill"] = { bg = "NONE" },
   ["TbLineBufOn"] = { bg = "NONE" },
   ["TbLineBufOff"] = { bg = "NONE" },

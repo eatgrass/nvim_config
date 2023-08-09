@@ -13,11 +13,10 @@ vim.opt.fillchars = vim.opt.fillchars
     fold = "┈",
     foldclose = "",
     foldopen = "",
-    foldsep = "│",
+    foldsep = "┊",
     diff = "",
-    lastline= " ",
+    lastline = " ",
   }
-
 vim.api.nvim_exec2("language en_US.UTF-8", { output = true })
 
 -- vim.cmd("setlocal spell spelllang=en_us")
@@ -177,22 +176,22 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- enhance ui
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  callback = function()
-    local colors = require("base46").get_theme_tb "base_30"
-    -- local theme = require("base46").get_theme_tb "base_16"
-    -- local generate_color = require("base46.colors").change_hex_lightness
-
-    vim.api.nvim_set_hl(0, "DiffAdd", { fg = colors.blue })
-    vim.api.nvim_set_hl(0, "DiffAdded", { fg = colors.green })
-    vim.api.nvim_set_hl(0, "DiffChange", { fg = colors.light_grey })
-    vim.api.nvim_set_hl(0, "DiffChangeDelete", { fg = colors.red })
-    vim.api.nvim_set_hl(0, "DiffModified", { fg = colors.orange })
-    vim.api.nvim_set_hl(0, "DiffDelete", { fg = colors.red })
-    vim.api.nvim_set_hl(0, "DiffRemoved", { fg = colors.red })
-    vim.api.nvim_set_hl(0, "DiffText", { fg = colors.white, bg = colors.black2 })
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--   callback = function()
+--     local colors = require("base46").get_theme_tb "base_30"
+--     -- local theme = require("base46").get_theme_tb "base_16"
+--     -- local generate_color = require("base46.colors").change_hex_lightness
+--
+--     vim.api.nvim_set_hl(0, "DiffAdd", { fg = colors.blue })
+--     vim.api.nvim_set_hl(0, "DiffAdded", { fg = colors.green })
+--     vim.api.nvim_set_hl(0, "DiffChange", { fg = colors.light_grey })
+--     vim.api.nvim_set_hl(0, "DiffChangeDelete", { fg = colors.red })
+--     vim.api.nvim_set_hl(0, "DiffModified", { fg = colors.orange })
+--     vim.api.nvim_set_hl(0, "DiffDelete", { fg = colors.red })
+--     vim.api.nvim_set_hl(0, "DiffRemoved", { fg = colors.red })
+--     vim.api.nvim_set_hl(0, "DiffText", { fg = colors.white, bg = colors.black2 })
+--   end,
+-- })
 
 -- fix java doc render
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

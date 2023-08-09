@@ -45,6 +45,14 @@ M.gitsigns = {
     changedelete = { hl = "GitSignsChangedelete", text = "▎" },
     untracked = { hl = "GitSignsUntracked",       text = "▎" },
   },
+  -- signs = {
+  --   add = { hl = "GitSignsAdd",                   text = ""},
+  --   change = { hl = "GitSignsChange",             text = ""},
+  --   delete = { hl = "GitSignsDelete",             text = ""},
+  --   topdelete = { hl = "GitSignsTopdelete",       text = "" },
+  --   changedelete = { hl = "GitSignsChangedelete", text = "" },
+  --   untracked = { hl = "GitSignsUntracked",       text = "" },
+  -- },
 }
 
 M.telescope = {

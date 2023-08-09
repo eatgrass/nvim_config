@@ -71,6 +71,10 @@ M.general = {
     },
     ["<C-w>w"] = { "<cmd>WinShift<cr>", "Move Window" },
     ["<Leader>rr"] = { "<cmd>Lazy reload markup.nvim<cr>", "reload plugin", opts = { silent = true } },
+    ["tl"] = {"<cmd>tabnext<cr>", "Next Tab", opts = {noremap = true}},
+    ["th"] = {"<cmd>tabprev<cr>", "Previous Tab", opts = {noremap = true}},
+    ["tc"] = {"<cmd>tabclose<cr>", "Close Tab", opts = {noremap = true}},
+    ["tn"] = {"<cmd>tabnew<cr>", "New Tab", opts = {noremap = true}},
   },
   v = {
     ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "hop in line", opts = { noremap = true } },

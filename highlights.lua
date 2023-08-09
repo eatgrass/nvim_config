@@ -133,7 +133,7 @@ local hl_groups = {
   DiagnosticVirtualTextHint = { fg = groups["hint"] },
   DiagnosticVirtualTextInfo = { fg = groups["info"] },
   DiagnosticVirtualTextWarn = { fg = groups["warn"] },
-  St_LspHints = {fg = colors["blue2"]},
+  St_LspHints = { fg = colors["blue2"] },
 
   Constant = { fg = colors["pink2"] },
   Variable = { fg = colors["bluegray1"] },
@@ -222,7 +222,7 @@ local hl_groups = {
   NeogitHunkHeader = { link = "Folded" },
   NeogitHunkHeaderHighlight = { bg = colors["background1"], bold = true },
   NeogitDiffContext = { link = "Normal" },
-  NeogitDiffContextHighlight = { bg=colors["background1"] },
+  NeogitDiffContextHighlight = { bg = colors["background1"] },
   NeogitCursorLine = { link = "CursorLine" },
 
   GitSignsAdd = { fg = groups["git_add"] },

@@ -28,10 +28,9 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = format
   client.server_capabilities.documentRangeFormattingProvider = format
 
-  -- if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
-    -- client.server_capabilities.semanticTokensProvider = nil
-    -- print("semantic token turn off")
-  -- end
+  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

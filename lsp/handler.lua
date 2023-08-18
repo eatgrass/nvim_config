@@ -1,4 +1,4 @@
-local lspconfig = require "plugins.configs.lspconfig"
+local lspconfig = require "custom.configs.lspconfig"
 
 local M = {}
 

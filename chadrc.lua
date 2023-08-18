@@ -17,7 +17,7 @@ M.ui = {
   statusline = {
     theme = "vscode_colored",
     overriden_modules = function(modules)
-      local st_modules = require "nvchad_ui.statusline.vscode_colored"
+      local st_modules = require "nvchad.statusline.vscode_colored"
 
       modules[1] = (function()
         local m = vim.api.nvim_get_mode().mode

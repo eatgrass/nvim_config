@@ -161,6 +161,8 @@ local hl_groups = {
   Delimiter = { fg = colors["bluegray1"] },
   SpecialComment = { fg = colors["bluegray1"] },
   Comment = { fg = colors["bluegray3"], italic = true },
+
+  FidgetTask = {fg=colors["bluegray2"]},
   -- ["@variable"] = { fg = colors["text"] },
   ["@variable"] = { link = "Variable" },
   ["@boolean"] = { link = "Boolean" },

@@ -5,6 +5,7 @@ local M = {}
 -- export on_attach & capabilities for custom lspconfigs
 
 local allow_format = {
+  "pyright",
   "null-ls",
   "jdtls",
   "lua_ls",
@@ -55,6 +56,7 @@ M.on_attach = function(client, bufnr)
   end
 
   if client.supports_method "textDocument/formatting" then
+    print("support format")
     local opts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(
       bufnr,
@@ -73,6 +75,8 @@ M.on_attach = function(client, bufnr)
         lsp_formatting(bufnr)
       end,
     })
+  else
+    print("not support")
   end
 
   -- if client.server_capabilities.documentSymbolProvider then

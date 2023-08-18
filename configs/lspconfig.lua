@@ -17,7 +17,7 @@ M.genServerConfig = function(server)
 end
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "volar", "clangd" }
+local servers = { "volar", "clangd", "pyright" }
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },

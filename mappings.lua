@@ -71,14 +71,22 @@ M.general = {
     },
     ["<C-w>w"] = { "<cmd>WinShift<cr>", "Move Window" },
     ["<Leader>rr"] = { "<cmd>Lazy reload markup.nvim<cr>", "reload plugin", opts = { silent = true } },
-    ["tl"] = {"<cmd>tabnext<cr>", "Next Tab", opts = {noremap = true}},
-    ["th"] = {"<cmd>tabprev<cr>", "Previous Tab", opts = {noremap = true}},
-    ["tc"] = {"<cmd>tabclose<cr>", "Close Tab", opts = {noremap = true}},
-    ["tn"] = {"<cmd>tabnew<cr>", "New Tab", opts = {noremap = true}},
+    ["tl"] = { "<cmd>tabnext<cr>", "Next Tab", opts = { noremap = true } },
+    ["th"] = { "<cmd>tabprev<cr>", "Previous Tab", opts = { noremap = true } },
+    ["tc"] = { "<cmd>tabclose<cr>", "Close Tab", opts = { noremap = true } },
+    ["tn"] = { "<cmd>tabnew<cr>", "New Tab", opts = { noremap = true } },
   },
   v = {
     ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "hop in line", opts = { noremap = true } },
     ["q"] = { "<cmd>HopChar1<cr>", "hop in buffer", opts = { noremap = true } },
+  },
+}
+
+M.lsp_rust_analyzer = {
+  plugin = true,
+  n = {
+    ["<Leader>dn"] = { "<cmd>RustHoverActions<cr>", "Rust Hover Actions", { noremap = true } },
+    ["<Leader>dl"] = { "<cmd>RustRunnables<cr>", "Rust Runnables", { noremap = true } },
   },
 }
 
@@ -92,12 +100,7 @@ M.lspconfig = {
     ["gi"] = { "<cmd>Trouble lsp_implementations<cr>", "LSP implementation" },
     ["gD"] = { "<cmd>Trouble lsp_type_definitions<cr>", "LSP definition type" },
     ["gr"] = { "<cmd>Trouble lsp_references<cr>", "LSP references" },
-    ["gl"] = {
-      function()
-        vim.diagnostic.open_float { border = "rounded" }
-      end,
-      "Floating diagnostic",
-    },
+    ["gl"] = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic", },
   },
 }
 

@@ -17,7 +17,10 @@ vim.opt.fillchars = vim.opt.fillchars
     diff = "",
     lastline = " ",
   }
+
+
 vim.api.nvim_exec2("language en_US.UTF-8", { output = true })
+
 
 -- vim.cmd("setlocal spell spelllang=en_us")
 
@@ -194,17 +197,17 @@ vim.api.nvim_create_autocmd("User", {
 -- })
 
 -- fix java doc render
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
-  if contents ~= nil then
-    for i, content in pairs(contents) do
-      contents[i] = content:gsub("%]%(.-%)", "]()")
-    end
-  end
-  local bufnr, winid = orig_util_open_floating_preview(contents, syntax, opts)
-  if syntax == "markdown" then
-    vim.api.nvim_buf_set_option(bufnr, "filetype", "markdown")
-  end
-
-  return bufnr, winid
-end
+-- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+-- vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+--   if contents ~= nil then
+--     for i, content in pairs(contents) do
+--       contents[i] = content:gsub("%]%(.-%)", "]()")
+--     end
+--   end
+--   local bufnr, winid = orig_util_open_floating_preview(contents, syntax, opts)
+--   if syntax == "markdown" then
+--     vim.api.nvim_buf_set_option(bufnr, "filetype", "markdown")
+--   end
+--
+--   return bufnr, winid
+-- end

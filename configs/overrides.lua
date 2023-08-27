@@ -34,16 +34,18 @@ M.treesitter = {
 }
 
 M.blankline = {
+  char = "▏",
+  context_char = "▏"
 }
 
 M.gitsigns = {
   signs = {
-    add = { hl = "GitSignsAdd",                   text = "▎"},
-    change = { hl = "GitSignsChange",             text = "▎"},
-    delete = { hl = "GitSignsDelete",             text = "▎"},
-    topdelete = { hl = "GitSignsTopdelete",       text = "▎" },
+    add = { hl = "GitSignsAdd", text = "▎" },
+    change = { hl = "GitSignsChange", text = "▎" },
+    delete = { hl = "GitSignsDelete", text = "▎" },
+    topdelete = { hl = "GitSignsTopdelete", text = "▎" },
     changedelete = { hl = "GitSignsChangedelete", text = "▎" },
-    untracked = { hl = "GitSignsUntracked",       text = "▎" },
+    untracked = { hl = "GitSignsUntracked", text = "▎" },
   },
   -- signs = {
   --   add = { hl = "GitSignsAdd",                   text = ""},
@@ -158,17 +160,17 @@ M.mason = {
 M.cmp = {
   mapping = {
     ["<CR>"] = function()
-      local cmp = require("cmp")
-      cmp.mapping({
-        i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+      local cmp = require "cmp"
+      cmp.mapping {
+        i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
         c = function(fallback)
           if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
           else
             fallback()
           end
         end,
-      })
+      }
     end,
   },
 }
@@ -221,7 +223,7 @@ M.nvimtree = {
           staged = "✓",
           unmerged = "",
           renamed = "➜",
-          untracked = "★",
+          untracked = "󰛄",
           deleted = "",
           ignored = "◌",
         },

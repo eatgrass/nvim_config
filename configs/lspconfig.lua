@@ -8,6 +8,10 @@ local allow_format = {
   "pyright",
   "rust_analyzer",
 }
+
+local custom_mappings = {
+  "rust_analyzer",
+}
 -- export on_attach & capabilities for custom lspconfigs
 
 M.on_attach = function(client, bufnr)
@@ -17,6 +21,13 @@ M.on_attach = function(client, bufnr)
   for _, v in ipairs(allow_format) do
     if v == client.name then
       format = true
+      break
+    end
+  end
+
+  for _, v in ipairs(custom_mappings) do
+    if v == client.name then
+      utils.load_mappings("lsp_" .. client.name, { buffer = bufnr })
       break
     end
   end
